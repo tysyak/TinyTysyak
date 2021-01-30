@@ -14,7 +14,7 @@ defmodule TinyTysy.Commands.Information do
       content: "<@#{content_message.author.id}>", embed: embed )
     {:ok, new} = NaiveDateTime.from_iso8601(message.timestamp)
     time = Time.diff(new, old, :microsecond)
-    Api.edit_message(message, embed: put_description(embed, "tomó: `#{time}[ms]`"))
+    Api.edit_message(message, embed: put_description(embed, "Tomó: `#{time}[ms]`"))
     :ok
   end
 
