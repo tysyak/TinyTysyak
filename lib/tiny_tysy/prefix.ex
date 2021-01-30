@@ -13,7 +13,8 @@ defmodule TinyTysy.Prefix do
       [_ | pre_args] = gen_val_regex()
       |> Regex.split(message)
       [pre_args | _] = for x <- pre_args, do: Regex.split(~r/\s+/, String.trim(x))
-      pre_args
+      [cmd | more_args] = pre_args
+      if more_args == [], do: cmd, else: [cmd | [list_str(more_args)]]
     end
   end
 
@@ -28,5 +29,17 @@ defmodule TinyTysy.Prefix do
   una expreción regular
   """
   def get_list_default_prefix(), do: ["t/", "|", "<@&804412783068315669>"]
+
+  defp list_str([]), do: ""
+  defp list_str([one]), do: one
+  defp list_str([one, two]), do: "#{ one } #{ two }"
+  defp list_str(inp_list) do
+    [last | base_list] = Enum.reverse(inp_list)
+    base_str  = base_list
+    |> Enum.reverse()
+    |> Enum.join(" ")
+
+    "#{ base_str }  #{ last }"
+  end
 
 end
