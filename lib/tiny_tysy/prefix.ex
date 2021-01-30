@@ -9,11 +9,24 @@ defmodule TinyTysy.Prefix do
   en una lista
   """
   def sanitizer_command(message) do
-    [prefix_command | rest] = Regex.split(~r<(\s+)>, String.trim(message))
-    prefix_command = Regex.split(~r<t/>, prefix_command, include_captures: true)
-    tl(prefix_command) ++ rest
+    if Regex.match?(gen_val_regex(), message) do
+      [_ | pre_args] = gen_val_regex()
+      |> Regex.split(message)
+      [pre_args | _] = for x <- pre_args, do: Regex.split(~r/\s+/, String.trim(x))
+      pre_args
+    end
   end
 
-  def get_default_prefix(), do: "t/"
+  defp gen_val_regex() do
+    prefixes = List.to_string(get_list_default_prefix())
+    {:ok, regex} = Regex.compile "^(#{prefixes})( +)?"
+    regex
+  end
+
+  @doc"""
+  Esta Funcion manda los dos prefijos por defecto para que se pasen por
+  una expreción regular
+  """
+  def get_list_default_prefix(), do: ["t/", "|", "<@&804412783068315669>"]
 
 end
