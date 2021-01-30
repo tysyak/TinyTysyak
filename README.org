@@ -10,6 +10,7 @@ hobby.
 ** Comandos de Información [1/1]
 - [X] Ping
 ** Implementación de mensajes Embebidos
+Ya le entendía a los embebidos son puros JSONS
 ** Base de datos [0/5]
 - [ ] Almacenar Servidor
 - [ ] Niveles
