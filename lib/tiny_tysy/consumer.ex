@@ -1,21 +1,19 @@
 defmodule TinyTysy.Consumer do
   use Nostrum.Consumer
+
   alias Nostrum.Api
+  alias TinyTysy.Commands, as: Commands
+  alias TinyTysy.Prefix, as: Prefix
 
   def start_link do
     Consumer.start_link(__MODULE__)
   end
 
-  def handle_event({:MESSAGE_CREATE,original_msg, _ws_state}) do
-
-    case original_msg.content do
-      "!ping" ->
-        old = original_msg.timestamp
-        {:ok, message} = Api.create_message(original_msg.channel_id, "Pong")
-        # time = Time.diff(message.timestamp, old)
-        Api.edit_message(message, message.content <> "\n tomó [ms]")
+  def handle_event({:MESSAGE_CREATE, original_msg, _ws_state}) do
+    prefix = Prefix.get_default_prefix()
+    case Prefix.sanitizer_command(original_msg.content) do
+      [prefix, "ping"] -> Commands.Information.ping(original_msg)
       _ ->
-        IO.inspect(original_msg)
         :ok
     end
   end
