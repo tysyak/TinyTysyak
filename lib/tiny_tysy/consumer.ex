@@ -10,11 +10,13 @@ defmodule TinyTysy.Consumer do
   end
 
   def handle_event({:MESSAGE_CREATE, original_msg, _ws_state}) do
-    prefix = Prefix.get_default_prefix()
-    case Prefix.sanitizer_command(original_msg.content) do
-      [prefix, "ping"] -> Commands.Information.ping(original_msg)
-      _ ->
-        :ok
+    # IO.inspect Prefix.sanitizer_command(original_msg.content)
+    command_complete = Prefix.sanitizer_command(original_msg.content)
+    # IO.inspect original_msg.content
+    # IO.inspect command_complete
+    case command_complete do
+      ["ping"] -> Commands.Information.ping(original_msg)
+      _ -> :ok
     end
   end
 
