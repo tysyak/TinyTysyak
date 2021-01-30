@@ -1,0 +1,18 @@
+#+TITLE: TinyTysyak
+
+Multipurpose Discord Bot
+
+* Description
+A Bot written in elixir to manage the server, a project that I use as
+hobby.
+
+* Modulos a desarrollar
+** Comandos de Información [1/1]
+- [X] Ping
+** Implementación de mensajes Embebidos
+** Base de datos [0/5]
+- [ ] Almacenar Servidor
+- [ ] Niveles
+- [ ] Blacklist
+- [ ] Comandos en sus respectivos Módulos
+- [ ] Prefijos personalizados
