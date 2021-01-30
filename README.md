@@ -1,16 +1,16 @@
 
 # Table of Contents
 
-1.  [Description](#orgd6059f1)
-2.  [Modulos a desarrollar](#orgaa5f9c8)
-    1.  [Comandos de Información <code>[0/1]</code>](#org207cdb3)
-    2.  [Implementación de mensajes Embebidos](#org56bff9d)
-    3.  [Base de datos <code>[0/5]</code>](#orgbf671a6)
+1.  [Description](#org1abb3c2)
+2.  [Modulos a desarrollar](#org0701084)
+    1.  [Comandos de Información <code>[1/1]</code>](#org365df67)
+    2.  [Implementación de mensajes Embebidos](#org6efc8cd)
+    3.  [Base de datos <code>[0/5]</code>](#org6fe493d)
 
 Multipurpose Discord Bot
 
 
-<a id="orgd6059f1"></a>
+<a id="org1abb3c2"></a>
 
 # Description
 
@@ -18,26 +18,26 @@ A Bot written in elixir to manage the server, a project that I use as
 hobby.
 
 
-<a id="orgaa5f9c8"></a>
+<a id="org0701084"></a>
 
 # Modulos a desarrollar
 
 
-<a id="org207cdb3"></a>
+<a id="org365df67"></a>
 
-## TODO Comandos de Información <code>[0/1]</code>
+## Comandos de Información <code>[1/1]</code>
 
--   [ ] Ping
-
-
-<a id="org56bff9d"></a>
-
-## TODO Implementación de mensajes Embebidos
+-   [X] Ping
 
 
-<a id="orgbf671a6"></a>
+<a id="org6efc8cd"></a>
 
-## TODO Base de datos <code>[0/5]</code>
+## Implementación de mensajes Embebidos
+
+
+<a id="org6fe493d"></a>
+
+## Base de datos <code>[0/5]</code>
 
 -   [ ] Almacenar Servidor
 -   [ ] Niveles

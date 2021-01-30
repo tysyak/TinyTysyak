@@ -7,10 +7,10 @@ A Bot written in elixir to manage the server, a project that I use as
 hobby.
 
 * Modulos a desarrollar
-** TODO Comandos de Información [0/1]
-- [ ] Ping
-** TODO Implementación de mensajes Embebidos
-** TODO Base de datos [0/5]
+** Comandos de Información [1/1]
+- [X] Ping
+** Implementación de mensajes Embebidos
+** Base de datos [0/5]
 - [ ] Almacenar Servidor
 - [ ] Niveles
 - [ ] Blacklist
