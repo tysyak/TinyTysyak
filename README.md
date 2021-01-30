@@ -1,21 +1,47 @@
-# TinyTysy
 
-**TODO: Add description**
+# Table of Contents
 
-## Installation
+1.  [Description](#orgd6059f1)
+2.  [Modulos a desarrollar](#orgaa5f9c8)
+    1.  [Comandos de Información <code>[0/1]</code>](#org207cdb3)
+    2.  [Implementación de mensajes Embebidos](#org56bff9d)
+    3.  [Base de datos <code>[0/5]</code>](#orgbf671a6)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `tiny_tysy` to your list of dependencies in `mix.exs`:
+Multipurpose Discord Bot
 
-```elixir
-def deps do
-  [
-    {:tiny_tysy, "~> 0.1.0"}
-  ]
-end
-```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/tiny_tysy](https://hexdocs.pm/tiny_tysy).
+<a id="orgd6059f1"></a>
+
+# Description
+
+A Bot written in elixir to manage the server, a project that I use as
+hobby.
+
+
+<a id="orgaa5f9c8"></a>
+
+# Modulos a desarrollar
+
+
+<a id="org207cdb3"></a>
+
+## TODO Comandos de Información <code>[0/1]</code>
+
+-   [ ] Ping
+
+
+<a id="org56bff9d"></a>
+
+## TODO Implementación de mensajes Embebidos
+
+
+<a id="orgbf671a6"></a>
+
+## TODO Base de datos <code>[0/5]</code>
+
+-   [ ] Almacenar Servidor
+-   [ ] Niveles
+-   [ ] Blacklist
+-   [ ] Comandos en sus respectivos Módulos
+-   [ ] Prefijos personalizados
 
