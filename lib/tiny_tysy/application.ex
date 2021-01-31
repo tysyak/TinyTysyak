@@ -4,7 +4,8 @@ defmodule TinyTysy.Application do
 
   def start(_type, _args) do
     children = [
-      TinyTysy.Consumer
+      TinyTysy.Consumer,
+      # TinyTysy.Repo # descomentar cuando se me ocurra usar la BD
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
