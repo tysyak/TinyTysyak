@@ -9,9 +9,11 @@ defmodule TinyTysy.Consumer do
   end
 
   def handle_event({event, original_msg, _ws_state}) do
+    Nostrum.Api.update_status(:dnd, "En desarrollo UwU OwO")
     case event do
-      :MESSAGE_CREATE -> event_chat(:MESSAGE_CREATE, original_msg)
-      :MESSAGE_REACTION_ADD -> IO.inspect :ok
+      :MESSAGE_CREATE ->
+        event_chat(event, original_msg)
+      :MESSAGE_REACTION_ADD -> event_chat(event, original_msg)
       _ -> :ok
     end
   end
@@ -22,7 +24,10 @@ defmodule TinyTysy.Consumer do
       is_list(command_complete) -> :ok
       :true -> parce_single_cmd(command_complete, original_msg)
     end
+  end
 
+  defp event_chat(:MESSAGE_REACTION_ADD, original_msg) do
+    :ok
   end
 
   defp parce_single_cmd(command, message) do
