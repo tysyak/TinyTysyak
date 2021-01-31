@@ -1,7 +1,6 @@
 defmodule TinyTysy.Consumer do
   use Nostrum.Consumer
 
-  alias Nostrum.Api
   alias TinyTysy.Commands, as: Commands
   alias TinyTysy.Prefix, as: Prefix
 
@@ -33,8 +32,5 @@ defmodule TinyTysy.Consumer do
     end
   end
 
-  def handle_event(_) do
-    Nostrum.Api.update_status("Mi Prefix", "t/help", 3)
-    :ok
-  end
+
 end
