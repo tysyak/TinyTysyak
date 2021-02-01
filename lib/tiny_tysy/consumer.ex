@@ -33,6 +33,7 @@ defmodule TinyTysy.Consumer do
   defp parce_single_cmd(command, message) do
     case command do
       "ping" -> Commands.Information.ping(message)
+      "source" -> Commands.Information.source(message)
       _ -> :ok
     end
   end
