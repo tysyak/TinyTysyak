@@ -9,6 +9,7 @@ defmodule TinyTysy.Commands.Information do
       description: "Calculando...",
       color: 13_278_919
     }
+    |> put_footer("Los problemas de la API de Discord podrían generar tiempos de ida y vuelta elevados")
     {:ok, old} = NaiveDateTime.from_iso8601(content_message.timestamp)
     {:ok, message} = Api.create_message(content_message.channel_id,
       content: "<@#{content_message.author.id}>", embed: embed )
