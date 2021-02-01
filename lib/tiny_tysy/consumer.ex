@@ -34,6 +34,7 @@ defmodule TinyTysy.Consumer do
     case command do
       "ping" -> Commands.Information.ping(message)
       "source" -> Commands.Information.source(message)
+      "help" -> Commands.Information.help(message)
       _ -> :ok
     end
   end
