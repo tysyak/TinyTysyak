@@ -10,10 +10,12 @@ hobby.
 ** Comandos de Información [1/1]
 - [X] Ping
 ** Implementación de mensajes Embebidos
-Ya le entendía a los embebidos son puros JSONS
-** Base de datos [0/5]
+Ya le entendí a los embebidos son puros JSONS
+** Base de datos [0/6]
 - [ ] Almacenar Servidor
 - [ ] Niveles
 - [ ] Blacklist
 - [ ] Comandos en sus respectivos Módulos
 - [ ] Prefijos personalizados
+* Herramientas usadas e implementadas
+[[https://github.com/kraigie/nostrum][Nostrum]] An Elixir library for the Discord API.
