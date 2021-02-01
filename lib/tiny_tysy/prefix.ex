@@ -19,7 +19,8 @@ defmodule TinyTysy.Prefix do
   end
 
   defp gen_val_regex() do
-    prefixes = List.to_string(get_list_default_prefix())
+    prefixes = List.to_string(for x <- get_list_default_prefix(), do: x <> "|")
+    |> String.slice(0..-2)
     {:ok, regex} = Regex.compile "^(#{prefixes})( +)?"
     regex
   end
@@ -28,7 +29,11 @@ defmodule TinyTysy.Prefix do
   Esta Funcion manda los dos prefijos por defecto para que se pasen por
   una expreción regular
   """
-  def get_list_default_prefix(), do: ["t/", "|", "<@&804412783068315669>"]
+  def get_list_default_prefix(), do: [
+    "t/",
+    "<@&804412783068315669>",
+    "<@!804411121410768897>"
+  ]
 
   defp list_str([]), do: ""
   defp list_str([one]), do: one
