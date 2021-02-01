@@ -32,9 +32,9 @@ defmodule TinyTysy.Consumer do
 
   defp parce_single_cmd(command, message) do
     case command do
-      "ping" -> Commands.Information.ping(message)
-      "source" -> Commands.Information.source(message)
-      "help" -> Commands.Information.help(message)
+      "ping" -> spawn(Commands.Information, :ping, [message])
+      "source" -> spawn(Commands.Information, :source, [message])
+      "help" -> spawn(Commands.Information, :help, [message])
       _ -> :ok
     end
   end
