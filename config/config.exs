@@ -1,4 +1,15 @@
-use Mix.Config
+# This file is responsible for configuring your umbrella
+# and **all applications** and their dependencies with the
+# help of the Config module.
+#
+# Note that all applications in your umbrella share the
+# same configuration and dependencies, which is why they
+# all use the same configuration file. If you want different
+# configurations or dependencies per app, it is best to
+# move said applications out of the umbrella.
+import Config
+
+
 
 config :tiny_tysy, TinyTysy.Repo,
   database: System.get_env("DAPP_DB"),
@@ -13,10 +24,10 @@ config :nostrum,
   token: System.get_env("TOKEN_DISCORD"),
   num_shards: :auto
 
-# config :tiny_tysy, TinyTysy.Repo,
-#   adapter: Ecto.Adapters.Postgres,
-#   database: System.get_env("APP_DB"),
-#   username: System.get_env("USER_DB"),
-#   socket_dir: "/run/postgresql/",
-#   pool_size: 10
-#   # password: System.get_env("PASSWD_DB"),
+# Sample configuration:
+#
+#     config :logger, :console,
+#       level: :info,
+#       format: "$date $time [$level] $metadata$message\n",
+#       metadata: [:user_id]
+#
