@@ -19,6 +19,12 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
+# Ignore package tarball (built via "mix hex.build").
+tiny_tysy-*.tar
+
+*.beam
+/config/*.secret.exs
+.elixir_ls/
 
 # Temporary files for e.g. tests
 /tmp
