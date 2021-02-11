@@ -14,7 +14,11 @@ defmodule TinyTysy.Prefix do
       |> Regex.split(message)
       [pre_args | _] = for x <- pre_args, do: Regex.split(~r/\s+/, String.trim(x))
       [cmd | more_args] = pre_args
-      if more_args == [], do: cmd, else: [cmd | [list_str(more_args)]]
+      if more_args == [] do
+        {:ok, cmd}
+      else
+        {:ok, [cmd | [list_str(more_args)]]}
+      end
     end
   end
 
@@ -31,7 +35,6 @@ defmodule TinyTysy.Prefix do
   """
   def get_list_default_prefix(), do: [
     "t/",
-    "<@&804412783068315669>",
     "<@!804411121410768897>"
   ]
 

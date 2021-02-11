@@ -7,16 +7,24 @@ defmodule TinyTysy.Commands.Information do
     embed = %Nostrum.Struct.Embed{
       title: "¡Ping!",
       description: "Calculando...",
-      color: 13_278_919
+      color: 13_278_919,
     }
-    |> put_footer("Los problemas de la API de Discord podrían generar tiempos de ida y vuelta elevados")
+    |> put_footer("Los problemas de la API de Discord podrían"<>
+      " generar tiempos de ida y vuelta elevados")
+
     {:ok, old} = NaiveDateTime.from_iso8601(content_message.timestamp)
+
     {:ok, message} = Api.create_message(content_message.channel_id,
       content: "<@#{content_message.author.id}>", embed: embed )
+
     {:ok, new} = NaiveDateTime.from_iso8601(message.timestamp)
+
     time = Time.diff(new, old, :microsecond)
-    {resp, _emsg} = Api.edit_message(message, embed: put_description(embed, "Tomó: `#{time}[ms]`"))
-    resp
+
+    Api.edit_message(
+      message,
+      embed: put_description(embed, "Tomó: `#{time}[ms]`")
+    )
   end
 
   def source(content_message) do
@@ -30,9 +38,8 @@ defmodule TinyTysy.Commands.Information do
     |> put_color(13_278_919)
     |> put_thumbnail("https://i.imgur.com/LZWD7bN.jpg")
     |> put_description("Código fuente de este bot " <> repo_actual <> "\n" <> url)
-    {resp, _new} = Api.create_message(content_message.channel_id,
+    Api.create_message(content_message.channel_id,
       content: "<@#{content_message.author.id}>", embed: embed )
-    resp
   end
 
   def help(content_message) do
@@ -40,7 +47,7 @@ defmodule TinyTysy.Commands.Information do
     {:ok, message} = Api.create_message(content_message.channel_id,
       content: "<@#{content_message.author.id}>\nDM enviado..." )
     embed = TinyTysy.Utility.Embed.help()
-    {resp, _message} = Api.create_message(dm.id, embed: embed)
+    resp = Api.create_message(dm.id, embed: embed)
     spawn(TinyTysy.Utility.Messages, :delete_soft_message_both, [content_message, message])
     resp
   end
