@@ -7,19 +7,19 @@ defmodule TinyTysyTest do
   end
 
   @test "t/cmd"
-  @assert "cmd"
+  @assert {:ok, "cmd"}
   test "sanitiser a comand withoth args" do
     assert TinyTysy.Prefix.sanitizer_command(@test) == @assert
   end
 
   @test "t/cmd      some"
-  @assert ["cmd", "some"]
+  @assert {:ok, ["cmd", "some"]}
   test "sanitiser a comand" do
     assert TinyTysy.Prefix.sanitizer_command(@test) == @assert
   end
 
   @test "t/cmd arg1 arg2"
-  @assert ["cmd", "arg1 arg2"]
+  @assert {:ok, ["cmd", "arg1 arg2"]}
   test "sanitiser a comand two args" do
     assert TinyTysy.Prefix.sanitizer_command(@test) == @assert
   end
