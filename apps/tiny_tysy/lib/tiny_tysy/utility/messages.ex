@@ -2,12 +2,13 @@ defmodule TinyTysy.Utility.Messages do
   @moduledoc"""
   Modulo que se encargará de la manipulación (CRUD) de lo mensajes
   """
+  import Nostrum.Struct.Embed
   use Nostrum.Consumer
 
   alias Nostrum.Api
 
-  def delete_soft_message_both(owner_msg, bot_msg) do
-    :timer.sleep(5_000)
+  def delete_soft_message_both(owner_msg, bot_msg, time_d\\5_000) do
+    :timer.sleep(time_d)
     Nostrum.Api.delete_message(bot_msg)
     Nostrum.Api.delete_message(owner_msg)
   end
