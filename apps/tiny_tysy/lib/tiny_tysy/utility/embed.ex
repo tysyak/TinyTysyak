@@ -11,7 +11,7 @@ defmodule TinyTysy.Utility.Embed do
 
   defp description do
     """
-    Por ahora los únicos comandos son: :ping_pong:
+    Por ahora los únicos comandos son
     `t/help`: Este mensaje :closed_book:
     `t/ping`: El tiempo de respuesta de discord al servidor  :ping_pong:
     `t/source`: El código fuente de este Bot :computer:
