@@ -12,6 +12,7 @@ defmodule TinyTysy.Consumer do
     Nostrum.Api.update_status(:dnd, "En desarrollo UwU OwO")
     case event do
       :MESSAGE_CREATE ->
+        :timer.sleep(501)
         event_chat(event, original_msg)
       :MESSAGE_REACTION_ADD -> event_chat(event, original_msg)
       _ -> :ok
@@ -23,7 +24,9 @@ defmodule TinyTysy.Consumer do
       case Prefix.sanitizer_command(original_msg.content) do
         {:ok, command_complete} ->
           cond do
-            is_list(command_complete) -> :ok
+            is_list(command_complete) ->
+              parce_cmd(original_msg, command_complete)
+              |> val_action()
             :true ->
               command_complete
               |> parce_single_cmd(original_msg)
@@ -46,6 +49,17 @@ defmodule TinyTysy.Consumer do
       "" -> {:error, original_msg, "¿Qué quieres que haga?...\nOwO"}
       _ -> {:error, original_msg,
       "El comando \n`#{command}`\n no es de mi dominio"}
+    end
+  end
+
+  defp parce_cmd(original_msg, [command | arg]) do
+    case command do
+      "purge" -> arg
+      |> hd()
+      |> String.to_integer()
+      |> TinyTysy.Utility.Messages.delete_messages(original_msg)
+       _ -> {:error, original_msg,
+           "El comando \n`#{command}`\n no es de mi dominio"}
     end
   end
 
