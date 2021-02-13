@@ -7,7 +7,7 @@ defmodule TinyTysy.Utility.Messages do
 
   alias Nostrum.Api
 
-  def delete_soft_message_both(owner_msg, bot_msg, time_d\\5_000) do
+  def delete_soft_message_both(owner_msg, bot_msg, time_d \\ 5_000) do
     :timer.sleep(time_d)
     Nostrum.Api.delete_message(bot_msg)
     Nostrum.Api.delete_message(owner_msg)
