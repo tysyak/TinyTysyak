@@ -2,7 +2,7 @@ defmodule TinyTysy.Utility.Embed do
   alias Nostrum.Struct.Embed
 
   def help do
-    embed = %Nostrum.Struct.Embed{}
+    %Nostrum.Struct.Embed{}
     |> Embed.put_author("TinyTysy", nil, "https://i.imgur.com/LZWD7bN.jpg")
     |> Embed.put_title("Comandos de TinyTysy")
     |> Embed.put_color(13_278_919)
