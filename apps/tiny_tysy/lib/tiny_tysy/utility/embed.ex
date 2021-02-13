@@ -15,6 +15,7 @@ defmodule TinyTysy.Utility.Embed do
     `t/help`: Este mensaje :closed_book:
     `t/ping`: El tiempo de respuesta de discord al servidor  :ping_pong:
     `t/source`: El código fuente de este Bot :computer:
+    `t/purge [cantidad]`: Elimina cuantos mensajes quieras(menos de 100 por camando) :recycle:
     """
   end
   def delete_message_both(owner_msg, bot_msg) do
