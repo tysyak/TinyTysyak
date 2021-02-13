@@ -37,9 +37,10 @@ defmodule TinyTysy.Utility.Messages do
       }
 
       id_channel = original_message.channel_id
+      user =  %Nostrum.Struct.User{id: original_message.author.id}
       {:ok, objetives} = Api.get_channel_messages(id_channel, amount + 1)
       {:ok, message} = Api.create_message(original_message.channel_id,
-        content: "<@#{original_message.author.id}>", embed: embed )
+        content: "#{Nostrum.Struct.User.mention(user)}", embed: embed )
 
       {:ok, old} = NaiveDateTime.from_iso8601(message.timestamp)
       Api.bulk_delete_messages(id_channel, for(msg <- objetives, do: msg.id))
