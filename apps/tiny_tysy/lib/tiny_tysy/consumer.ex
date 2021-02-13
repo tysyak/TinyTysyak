@@ -23,14 +23,13 @@ defmodule TinyTysy.Consumer do
     unless is_nil(original_msg.member) do
       case Prefix.sanitizer_command(original_msg.content) do
         {:ok, command_complete} ->
-          cond do
-            is_list(command_complete) ->
-              parce_cmd(original_msg, command_complete)
-              |> val_action()
-            :true ->
-              command_complete
-              |> parce_single_cmd(original_msg)
-              |> val_action()
+          if is_list(command_complete) do
+            parce_cmd(original_msg, command_complete)
+            |> val_action()
+          else
+            command_complete
+            |> parce_single_cmd(original_msg)
+            |> val_action()
           end
         _ -> :ok
       end
@@ -66,6 +65,7 @@ defmodule TinyTysy.Consumer do
   defp val_action(tuple_val) do
     case tuple_val do
       {:ok, _original_msg} -> :ok
+      {:error, http_error} -> IO.puts "some bad"
       {:error, original_msg, message} ->
         TinyTysy.Utility.Messages.error_message(original_msg, message)
     end
