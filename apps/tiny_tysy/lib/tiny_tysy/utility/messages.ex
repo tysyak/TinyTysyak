@@ -16,7 +16,7 @@ defmodule TinyTysy.Utility.Messages do
   def error_message(original_message, message) do
 
     embed = %Nostrum.Struct.Embed{
-      title: "Mmmmmm...",
+      title: "Una disculpa..",
       description: message,
       color: 11_981_584,
     }
@@ -29,6 +29,7 @@ defmodule TinyTysy.Utility.Messages do
   end
 
   def delete_messages(amount, original_message) do
+    if amount < 100 do
       embed = %Nostrum.Struct.Embed{
         title: "Eliminando mensajes",
         description: "Eliminando `#{amount}` mensajes...",
@@ -36,33 +37,29 @@ defmodule TinyTysy.Utility.Messages do
       }
 
       id_channel = original_message.channel_id
-      {:ok, objetives} = Api.get_channel_messages(id_channel, amount)
+      {:ok, objetives} = Api.get_channel_messages(id_channel, amount + 1)
       {:ok, message} = Api.create_message(original_message.channel_id,
         content: "<@#{original_message.author.id}>", embed: embed )
 
       {:ok, old} = NaiveDateTime.from_iso8601(message.timestamp)
-      for msg <- objetives do
-        :timer.sleep(700)
-        Api.delete_message(msg)
-      end
+      Api.bulk_delete_messages(id_channel, for(msg <- objetives, do: msg.id))
       new = NaiveDateTime.utc_now
-      time = Time.diff(new, old)
+      time = Time.diff(new, old, :microsecond)
       resp = Api.edit_message(
         message,
-        embed: put_description(embed, "Tomó: `#{time}[s]` "<>
-          "para **#{amount}** mensajes.")
+        embed: put_description(embed, "Tomó: `#{time}[ms]` para **#{amount}** mensajes.")
       )
       :timer.sleep(50)
       delete_soft_message_both(original_message, message, 10_000)
       resp
+    else
+      {:error, original_message, "Solo puedo procesar menos de **100** mensajes" <>
+      " por comando."}
+    end
   end
 
   defp get_channel_id(content) do
     Regex.scan(~r/\d+/, content) |> hd() |> hd()
   end
-
-
-
-
 
 end
