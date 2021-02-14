@@ -33,8 +33,8 @@ defmodule TinyTysy.Consumer do
             |> parce_single_cmd(original_msg)
             |> val_action()
           end
-        _ -> :ok
-      end
+        end
+      _ -> :ok
     end
   end
 
