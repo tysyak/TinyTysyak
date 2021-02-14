@@ -7,6 +7,16 @@ defmodule TinyTysy.Utility.Messages do
 
   alias Nostrum.Api
 
+  def write(message, original_message) do
+    embed = %Nostrum.Struct.Embed{
+      description: message,
+      color: 13_278_919
+    }
+    id_channel = original_message.channel_id
+    user =  %Nostrum.Struct.User{id: original_message.author.id}
+    Api.create_message(original_message.channel_id, embed: embed )
+  end
+
   def delete_soft_message_both(owner_msg, bot_msg, time_d \\ 5_000) do
     :timer.sleep(time_d)
     Nostrum.Api.delete_message(bot_msg)

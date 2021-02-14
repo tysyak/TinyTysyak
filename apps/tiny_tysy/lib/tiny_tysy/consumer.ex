@@ -56,12 +56,17 @@ defmodule TinyTysy.Consumer do
 
   defp parce_cmd(original_msg, [command | arg]) do
     case command do
-      "purge" -> arg
-      |> hd()
-      |> String.to_integer()
-      |> TinyTysy.Utility.Messages.delete_messages(original_msg)
-       _ -> {:error, original_msg,
-           "El comando \n`#{command}`\n no es de mi dominio"}
+      "purge" ->
+        arg
+        |> hd()
+        |> String.to_integer()
+        |> TinyTysy.Utility.Messages.delete_messages(original_msg)
+      "write" -> Nostrum.Api.delete_message(original_msg)
+        arg
+        |> hd()
+        |> TinyTysy.Utility.Messages.write(original_msg)
+      _ -> {:error, original_msg,
+          "El comando \n`#{command}`\n no es de mi dominio"}
     end
   end
 
