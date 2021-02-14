@@ -30,8 +30,9 @@ defmodule TinyTysy.Utility.Messages do
       description: message,
       color: 11_981_584,
     }
-    {resp, tmp_msg} = Api.create_message(original_message.channel_id,
-      content: "<@#{original_message.author.id}>", embed: embed )
+    user = %Nostrum.Struct.User{id: original_message.author.id}
+    {:ok, tmp_msg} = Api.create_message(original_message.channel_id,
+      content: "#{Nostrum.Struct.User.mention(user)}", embed: embed )
     spawn(fn ->
       delete_soft_message_both(original_message, tmp_msg)
     end)
