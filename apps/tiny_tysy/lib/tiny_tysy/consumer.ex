@@ -45,6 +45,7 @@ defmodule TinyTysy.Consumer do
       "ping" -> Commands.Information.ping(original_msg)
       "source" -> Commands.Information.source original_msg
       "help" -> Commands.Information.help original_msg
+      "tysyak" -> Commands.Special.tysyak original_msg
       "" -> {:error, original_msg, "¿Qué quieres que haga?...\nOwO"}
       _ -> {:error, original_msg,
       "El comando \n`#{command}`\n no es de mi dominio"}
