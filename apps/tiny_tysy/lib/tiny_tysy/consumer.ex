@@ -4,6 +4,8 @@ defmodule TinyTysy.Consumer do
   alias TinyTysy.Commands, as: Commands
   alias TinyTysy.Prefix, as: Prefix
 
+  @id_dev 580624868341448704
+
   def start_link do
     Consumer.start_link(__MODULE__)
   end
@@ -20,9 +22,9 @@ defmodule TinyTysy.Consumer do
   end
 
   defp event_chat(:MESSAGE_CREATE, original_msg) do
-    unless is_nil(original_msg.member) do
-      case Prefix.sanitizer_command(original_msg.content) do
-        {:ok, command_complete} ->
+    case Prefix.sanitizer_command(original_msg.content) do
+      {:ok, command_complete} ->
+        if only_dev(original_msg) do
           if is_list(command_complete) do
             parce_cmd(original_msg, command_complete)
             |> val_action()
@@ -70,5 +72,9 @@ defmodule TinyTysy.Consumer do
       {:error, original_msg, message} ->
         TinyTysy.Utility.Messages.error_message(original_msg, message)
     end
+  end
+
+  defp only_dev(original_msg) do
+    if original_msg.author.id == @id_dev, do: :true, else: :false
   end
 end
