@@ -68,9 +68,4 @@ defmodule TinyTysy.Utility.Messages do
       " por comando."}
     end
   end
-
-  defp get_channel_id(content) do
-    Regex.scan(~r/\d+/, content) |> hd() |> hd()
-  end
-
 end
