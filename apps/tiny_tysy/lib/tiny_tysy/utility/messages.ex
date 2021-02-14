@@ -59,7 +59,9 @@ defmodule TinyTysy.Utility.Messages do
       time = Time.diff(new, old, :microsecond)
       resp = Api.edit_message(
         message,
-        embed: put_description(embed, "Tomó: `#{time}[ms]` para **#{amount}** mensajes.")
+        embed: put_description(
+          put_title(embed, "Ya termine!"),
+          "Tomó: `#{time}[ms]` para **#{amount}** mensajes.")
       )
       :timer.sleep(50)
       delete_soft_message_both(original_message, message, 10_000)
